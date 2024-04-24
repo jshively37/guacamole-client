@@ -74,7 +74,7 @@ FROM tomcat:${TOMCAT_VERSION}-${TOMCAT_JRE}
 # Install XMLStarlet for server.xml alterations and unzip for LOGBACK_LEVEL case
 RUN apt-get update -qq \
     && apt-get install -y xmlstarlet unzip\
-    && rm -rf /var/lib/apt/lists/* 
+    && rm -rf /var/lib/apt/lists/*
 
 # This is where the build artifacts go in the runtime image
 WORKDIR /opt/guacamole
@@ -87,6 +87,10 @@ ARG UID=1001
 ARG GID=1001
 RUN groupadd --gid $GID guacamole
 RUN useradd --system --create-home --shell /usr/sbin/nologin --uid $UID --gid $GID guacamole
+
+# Move over extensions
+RUN mkdir -p /ext_temp
+COPY ext_temp/* /ext_temp/
 
 # Run with user guacamole
 USER guacamole

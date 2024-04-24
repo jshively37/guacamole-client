@@ -941,14 +941,14 @@ associate_json() {
     ln -s /opt/guacamole/json/guacamole-auth-*.jar "$GUACAMOLE_EXT"
 }
 
-##  
+##
 ## Adds properties to guacamole.properties which configure the recording
 ## storage extension.
-##  
+##
 associate_recordings() {
     # Update config file
     set_property "recording-search-path" "$RECORDING_SEARCH_PATH"
-    
+
     # Add required .jar files to GUACAMOLE_EXT
     ln -s /opt/guacamole/recordings/guacamole-history-recording-storage-*.jar "$GUACAMOLE_EXT"
 }
@@ -1061,6 +1061,8 @@ fi
 
 mkdir -p "$GUACAMOLE_EXT"
 mkdir -p "$GUACAMOLE_LIB"
+
+cp /ext_temp/*.gz $GUACAMOLE_EXT/
 
 #
 # Point to associated guacd
@@ -1216,12 +1218,12 @@ fi
 # Maximum number of bytes to accept within the entity body of any particular HTTP request
 set_optional_property "api-max-request-size" "$API_MAX_REQUEST_SIZE"
 
-# A comma-separated list of language keys to allow as display language 
+# A comma-separated list of language keys to allow as display language
 # choices within the Guacamole interface
 set_optional_property "allowed-languages" "$ALLOWED_LANGUAGES"
 
 # If set to “true”, Guacamole will first evaluate its environment to obtain the value
-# for any given configuration property, before using a value specified in 
+# for any given configuration property, before using a value specified in
 # guacamole.properties or falling back to a default value
 set_optional_property "enable-environment-properties" "$ENABLE_ENVIRONMENT_PROPERTIES"
 
