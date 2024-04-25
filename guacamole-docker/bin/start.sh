@@ -1062,7 +1062,7 @@ fi
 mkdir -p "$GUACAMOLE_EXT"
 mkdir -p "$GUACAMOLE_LIB"
 
-cp /ext_temp/*.gz $GUACAMOLE_EXT/
+cp /ext_temp/*.jar $GUACAMOLE_EXT/
 
 #
 # Point to associated guacd
